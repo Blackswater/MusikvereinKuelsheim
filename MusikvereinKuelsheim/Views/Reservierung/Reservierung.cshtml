@@ -1,0 +1,82 @@
+﻿@model MusikvereinKuelsheim.Models.ContactDataDetailModel
+@{
+    ViewBag.Title = "Reservierung";
+}
+
+<script>
+    // Tooltips Initialization
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            @using (Html.BeginForm(FormMethod.Post, new { @class = "needs-validation", @novalidate = "true" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2>Sitzplatz Reservierung<br /> <small>für das Adventskonzert</small></h2>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6 col-md-6">
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lg", @placeholder = "Vorname" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "alert alert-danger" })
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-lg", @placeholder = "Nachname" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "alert alert-danger" })
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-lg", @placeholder = "E-Mail Adresse", @type = "email" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "alert alert-danger" })
+                    <br />
+
+
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.PLZ, new { @class = "form-control input-lg", @placeholder = "Postleitzahl", @type = "number" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.PLZ, "Postleitzahl muss vorhanden/gültig sein!", new { @class = "alert alert-danger" })
+                    <br />
+
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.Telephonnumber, new { @class = "form-control input-lg", @placeholder = "Telephonnummer", @type = "text" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Telephonnumber, "Telephonnummer muss vorhanden/gültig sein!", new { @class = "alert alert-danger" })
+                    <br />
+                </div>
+                <hr />
+                <div class="@(Model?.isContactDataAlreadyExisting ?? false ? "alert alert-danger" : "display:none")" id="ContactDataAlreadyExist" role="alert">
+                    @{
+                        if (Model?.isContactDataAlreadyExisting ?? false)
+                        {
+                            @Html.LabelFor(model => model.isContactDataAlreadyExisting);
+                        }
+                    }
+
+                </div>
+                <div class="row">
+                    <input type="submit" value="Senden" class="btn btn-info btn-block btn-lg" tabindex="6" />
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

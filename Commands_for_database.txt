@@ -1,0 +1,4 @@
+NuGet Manager:
+    Microsoft.EntityFrameworkCore
+    Microsoft.EntityFrameworkCore.SqLite
+    Microsoft.EntityFrameworkCore.Tools
