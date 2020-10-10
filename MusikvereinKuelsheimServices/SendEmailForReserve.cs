@@ -9,14 +9,14 @@ namespace MusikvereinKuelsheimServices
 {
     public class SendEmailForReserve
     {
-        public void Send(MailMessage message);
+        //public void Send(MailMessage message);
 
         public static void CreateReserveMessage(string server, ContactData contactData)
         {
             var to = contactData.EMail;
             String from = "noreply@musikvereineintrachtkuelsheim.de";
 
-            MailMessage message = new MailMessage(from, to);chrome://vivaldi-webui/startpage?section=Speed-dials&activeSpeedDialIndex=0&background-color=#2e2e2e
+            MailMessage message = new MailMessage(from, to);
             message.Subject = "Ihre Reservierung für das Konzert";
             message.Body = @"Test MEssage";
             SmtpClient client = new SmtpClient(server);
